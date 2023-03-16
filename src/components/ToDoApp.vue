@@ -9,6 +9,12 @@
       <textarea class="form-control" id="infoTextArea" rows="3" placeholder="Введите информацию..."
                 v-model.trim="info"></textarea>
     </div>
+    <div class="form-check mb-3">
+      <input class="form-check-input" type="checkbox" v-model="active" id="flexCheckDefault">
+      <label class="form-check-label" for="flexCheckDefault">
+        Активная задача
+      </label>
+    </div>
     <button type="submit" class="btn btn-primary" @click.prevent="listItemAdd">Добавить</button>
   </form>
   <h2 class="text-center">Задачи</h2>
@@ -18,6 +24,7 @@
         <div class="card-body">
           <h5 class="card-title">{{ `${item.id}) ${item.header}` }}</h5>
           <p class="card-text">{{ item.info }}</p>
+          <p class="card-text">{{ item.active }}</p>
         </div>
       </div>
     </div>
@@ -33,12 +40,13 @@ export default {
       list: [],
       header: "",
       info: "",
+      active: false,
       id: 1
     }
   },
   methods: {
     listItemAdd() {
-      this.list.push({id: this.id++, header: this.header, info: this.info})
+      this.list.push({id: this.id++, header: this.header, info: this.info, active: this.active})
     },
   }
 }
